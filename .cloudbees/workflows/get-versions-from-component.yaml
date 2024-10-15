@@ -1,0 +1,36 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: get-versions-from-component
+on:
+  workflow_dispatch:
+jobs:
+  create-artifact-versions:
+    steps:
+      - name: Create artifact versions
+        id: createArtifactVersions
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          curl -X POST -H "Authorization: Bearer $JWT" --data '{\
+            "artifactName":"art1",\
+            "artifactVersion":"1.2",\
+            }'  'https://api.cloudbees.io/v2/artifactVersion'
+          curl -X POST -H "Authorization: Bearer $JWT" --data '{\
+            "artifactName":"art2",\
+            "artifactVersion":"3.4",\
+            }'  'https://api.cloudbees.io/v2/artifactVersion'          
+  get-artifact-versions:
+    needs: create-artifact-versions
+    steps:
+      - name: Get artifact versions of this component
+        id: getVersions
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          curl -X GET -H "Authorization: Bearer $JWT" 'https://api.cloudbees.io/v2/artifactVersions' >> "$CLOUDBEES_OUTPUTS/versions"
+      - name: Show artifact versions
+        uses: docker://golang:1.20.3-alpine3.17
+        shell: sh
+        run: |
+          echo "Artifact Versions: ${{ steps.getVersions.outputs.versions }}"
+          # Expected output: [{"art1":"1.2"},{"art2":"3.4"}]
