@@ -27,7 +27,7 @@ jobs:
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
         run: |
-          curl -X GET -H "Authorization: Bearer $JWT" 'https://api.cloudbees.io/v2/artifactVersions' >> "$CLOUDBEES_OUTPUTS/versions"
+          curl -X GET -H "Authorization: Bearer $JWT" 'https://api.cloudbees.io/v2/artifactVersions?count=1' >> "$CLOUDBEES_OUTPUTS/versions"
       - name: Show artifact versions
         uses: docker://golang:1.20.3-alpine3.17
         shell: sh
