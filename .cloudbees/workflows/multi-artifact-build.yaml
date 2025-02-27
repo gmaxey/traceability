@@ -1,0 +1,22 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Multi-artifact-build
+on:
+  workflow_dispatch:
+    inputs:
+      artifactName:
+        type: string
+      artifactVersion:
+        type: string
+      digest:
+        type: string
+jobs:
+  build:
+    steps:
+      - uses: cloudbees-io/register-build-artifact@v1
+        name: Publish artifact
+        with:
+          name: "${{ inputs.artifactName }}"
+          version: "${{inputs.artifactVersion}}-${{cloudbees.version}}"
+          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.baseVersion}}-${{cloudbees.version}}"
+          digest: "${{ inputs.artifactName }}"
