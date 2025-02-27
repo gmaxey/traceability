@@ -18,5 +18,5 @@ jobs:
         with:
           name: "${{ inputs.artifactName }}"
           version: "${{inputs.artifactVersion}}-${{cloudbees.version}}"
-          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.baseVersion}}-${{cloudbees.version}}"
+          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{cloudbees.version}}"
           digest: "${{ inputs.artifactName }}"
