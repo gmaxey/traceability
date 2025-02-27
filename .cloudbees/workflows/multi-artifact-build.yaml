@@ -17,6 +17,6 @@ jobs:
         name: Publish artifact
         with:
           name: "${{ inputs.artifactName }}"
-          version: "${{inputs.artifactVersion}}-${{cloudbees.version}}"
-          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{cloudbees.version}}"
+          version: "${{inputs.artifactVersion}}"
+          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.artifactVersion}}"
           digest: "${{ inputs.artifactName }}"
