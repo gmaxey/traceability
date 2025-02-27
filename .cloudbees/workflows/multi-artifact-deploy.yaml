@@ -1,0 +1,22 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: Multi-artifact-deploy
+on:
+  workflow_dispatch:
+    inputs:
+      artifactName:
+        type: string
+      artifactVersion:
+        type: string
+      environment:
+        type: string
+jobs:
+  deploy:
+    steps:
+      - name: Inform system that an artifact version was deployed
+        uses: cloudbees-io/register-deployed-artifact@v1
+        with:
+          name: "${{ inputs.artifactName }}"
+          version: "${{ inputs.artifactVersion }}"
+          url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
+          target-environment: "${{ inputs.environment }}"
