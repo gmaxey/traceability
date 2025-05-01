@@ -3,26 +3,26 @@ kind: workflow
 name: Test build and deploy labels
 on:
   workflow_dispatch:
-
 jobs:
   build:
-   steps:
-    - name: Register and label build
-      uses: cloudbees-io/register-build-artifact@v1
-      with:
-        name: "myComp"
-        version: "7.23"
-        url: "https://docker.io/myComp:7.23"
-        digest: "sha256:12344411840fa16466150c58f628dc6e6c40a9b07e3b3609"
-        labels: "Built by CPB,not tested"
+    steps:
+      - name: Register and label build
+        uses: cloudbees-io/register-build-artifact@v1
+        with:
+          name: myComp
+          version: "7.23"
+          url: https://docker.io/myComp:7.23
+          digest: sha256:12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
+          labels: Built by CPB,not tested
   deploy:
     steps:
       - name: Register and label deploy
         uses: cloudbees-io/register-deployed-artifact@v1
         with:
-          name: "myComp"
+          name: myComp
           version: "7.23"
-          url: "https://docker.io/myComp:7.23"
+          url: https://docker.io/myComp:7.23
           digest: ""
-          target-environment: "gpm-qa"
-          labels: "Deployed by CBP,still not tested"
+          target-environment: gpm-qa
+          labels: Deployed by CBP,still not tested
+    needs: build
