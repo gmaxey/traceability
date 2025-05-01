@@ -12,7 +12,7 @@ jobs:
           name: myComp
           version: "7.23-${{ cloudbees.version }}"
           url: https://docker.io/myComp:7.23-${{ cloudbees.version }}
-          digest: sha256:12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
+          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
           labels: Built by CPB,not tested
   deploy:
     steps:
