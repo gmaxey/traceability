@@ -8,14 +8,13 @@ on:
         type: string
         default: gpm-qa
 jobs:
-  build:
+  deploy:
     steps:
       - name: register deploy
         kind: deploy
-        uses: cloudbees-io/register-deployed-artifact@v1
+        uses: cloudbees-io/register-deployed-artifact@main
         with:
-          version: 7.23-0.0.553
-          url: https://docker.io/myComp:7.23-0.0.553
-          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
-          #target-environment: ${{ inputs.env }}
+          version: 5.7-0.0.588
+          url: https://docker.io/MyApp/myComp:5.7-0.0.588
+          target-environment: ${{ inputs.env }}
           name: myComp
