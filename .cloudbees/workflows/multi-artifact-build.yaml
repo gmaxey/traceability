@@ -8,8 +8,6 @@ on:
         type: string
       artifactVersion:
         type: string
-      digest:
-        type: string
 jobs:
   build:
     steps:
