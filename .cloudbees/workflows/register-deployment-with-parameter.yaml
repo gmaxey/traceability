@@ -16,6 +16,6 @@ jobs:
         with:
           version: 7.23-0.0.553
           url: https://docker.io/myComp:7.23-0.0.553
-          digest: sha256:bbbbaa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
+          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
           target-environment: ${{ inputs.env }}
           name: myComp
