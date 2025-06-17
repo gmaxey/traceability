@@ -13,10 +13,15 @@ on:
 jobs:
   build:
     steps:
+      - name: generate sha
+        id: sha
+        uses: docker://alpine:3.18
+        run: |
+          echo "${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{ cloudbees.version }}" | sha256sum | cut -d" " -f1 >> $CLOUDBEES_OUTPUTS/sha
       - uses: cloudbees-io/register-build-artifact@v1
         name: Publish artifact
         with:
           name: "${{ inputs.artifactName }}"
-          version: "${{inputs.artifactVersion}}"
-          url: "https://docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.artifactVersion}}"
-          digest: "${{ inputs.artifactName }}"
+          version: "${{inputs.artifactVersion}}-${{ cloudbees.version }}"
+          url: "https://docker.io/MyApp/${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{ cloudbees.version }}"
+          digest: "${{ steps.sha.outputs.sha }}"
