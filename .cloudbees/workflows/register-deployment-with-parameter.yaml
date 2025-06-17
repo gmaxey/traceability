@@ -14,9 +14,9 @@ jobs:
         #kind: deploy
         uses: cloudbees-io/register-build-artifact@v1
         with:
-          version: 7.23-0.0.553
-          url: https://docker.io/myComp:7.23-0.0.553
-          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
+          version: 7.23-0.0.554
+          url: https://docker.io/myComp:7.23-0.0.554
+          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3601
           #target-environment: ${{ inputs.env }}
           name: myComp
   deploy:
@@ -25,9 +25,9 @@ jobs:
         kind: deploy
         uses: cloudbees-io/register-deployed-artifact@main
         with:
-          version: 7.23-0.0.553
-          url: https://docker.io/myComp:7.23-0.0.553
-          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3609
+          version: 7.23-0.0.554
+          url: https://docker.io/myComp:7.23-0.0.554
+          digest: sha256aa12344411840fa16466150c58f628dc6e6c40a9b07e3b3601
           #target-environment: ${{ inputs.env }}
           name: myComp
     needs: build
