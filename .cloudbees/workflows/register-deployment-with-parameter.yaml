@@ -7,7 +7,6 @@ on:
       env:
         type: string
         default: gpm-qa
-        required: true
 jobs:
   build:
     steps:
