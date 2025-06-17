@@ -14,7 +14,7 @@ jobs:
         kind: deploy
         uses: cloudbees-io/register-deployed-artifact@main
         with:
-          version: 7.23-0.0.555
-          url: https://docker.io/myComp:7.23-0.0.555
+          version: 7.23-0.0.553
+          url: https://docker.io/myComp:7.23-0.0.553
           target-environment: ${{ inputs.env }}
           name: myComp
