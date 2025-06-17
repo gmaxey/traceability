@@ -19,7 +19,7 @@ jobs:
         id: sha
         uses: docker://alpine:3.18
         run: |
-          echo "${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{ cloudbees.version }}" | sha256sum | awk '{print "sha256:"$1}' >> $CLOUDBEES_OUTPUTS/sha
+          echo "${{ inputs.artifactName }}:${{inputs.artifactVersion}}-${{ cloudbees.version }}" | sha256sum | awk '{print "sha256:"$1}' | tr -d '\n' >> $CLOUDBEES_OUTPUTS/sha
       - uses: cloudbees-io/register-build-artifact@v1
         name: Publish artifact
         with:
