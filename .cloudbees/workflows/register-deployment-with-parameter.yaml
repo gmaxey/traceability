@@ -16,5 +16,5 @@ jobs:
         with:
           version: 5.7-0.0.588
           url: https://docker.io/MyApp/myComp:5.7-0.0.588
-          target-environment: ${{ inputs.env }}
+          #target-environment: ${{ inputs.env }}
           name: myComp
