@@ -6,8 +6,12 @@ on:
     inputs:
       artifactName:
         type: string
+        default: myComp
+        required: true
       artifactVersion:
         type: string
+        required: true
+        default: "5.7"
 jobs:
   build:
     steps:
