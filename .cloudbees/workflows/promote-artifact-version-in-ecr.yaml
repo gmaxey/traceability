@@ -16,5 +16,5 @@ jobs:
           target-tag: prod
         uses: cloudbees-io/ecr-promote-image@v1
       - name: Use artifact ID
-        run: echo ${{ steps.ecr.outputs.artifactId }}
+        run: echo ${{ steps.ecr.outputs.artifact-id }}
         uses: docker://golang:1.20.3-alpine3.17
