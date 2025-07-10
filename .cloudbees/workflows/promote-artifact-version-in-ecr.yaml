@@ -1,0 +1,20 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: promote artifact version in ecr
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Promote artifact version
+        id: ecr
+        with:
+          registry-url: ecr-registry
+          source-repository-name: ecr-source
+          target-repository-name: ecr-target
+          source-tag: dev
+          target-tag: prod
+        uses: cloudbees-io/ecr-promote-image@v1
+      - name: Use artifact ID
+        run: echo ${{ steps.ecr.outputs.artifactId }}
+        uses: docker://golang:1.20.3-alpine3.17
