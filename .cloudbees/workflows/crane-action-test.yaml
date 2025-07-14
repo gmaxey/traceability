@@ -21,5 +21,5 @@ jobs:
           platform: linux/amd64
           skip-image-validation: "false"
       - name: Use output
-        run: echo ${{ steps.crane.outpus.artifact-id }}
+        run: echo ${{ steps.crane.outputs.artifact-id }}
         uses: docker://golang:1.20.3-alpine3.17
