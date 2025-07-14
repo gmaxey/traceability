@@ -12,3 +12,14 @@ jobs:
           username: gmaxey
           password: ${{ secrets.DOCKERHUB_PASSWORD }}
         uses: cloudbees-io/configure-oci-credentials@v1
+      - name: Copy a remote image with Crane
+        id: crane
+        uses: cloudbees-io/crane@v1
+        with:
+          src: gmaxey/demo-app:46d58094ff3e23ed50566bec88b9454edf43886e
+          destination: gmaxey/demo-app:1.0
+          platform: linux/amd64
+          skip-image-validation: "false"
+      - name: Use output
+        run: echo ${{ steps.crane.outpus.artifact-id }}
+        uses: docker://golang:1.20.3-alpine3.17
