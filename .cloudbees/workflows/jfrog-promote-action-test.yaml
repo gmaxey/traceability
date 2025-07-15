@@ -1,0 +1,37 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: jfrog-promote action test
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Promote an image
+        id: promote
+        uses: cloudbees-io/jfrog-artifactory-promote-image@v1
+        with:
+          source-image-name: source-image
+          source-repository-name: local-test
+          source-tag: 1
+          url: https://example.com
+          username: username
+          password: password
+          target-repository-name: test
+      - name: Copy an image
+        id: copy
+        uses: cloudbees-io/jfrog-artifactory-promote-image@v1
+        with:
+            source-image-name: my-source-image
+            source-repository-name: my-repo
+            source-tag: 1
+            url: https://example.com
+            token: abc
+            target-image-name: target-image
+            target-repository-name: my-target-repo
+            target-tag: 12
+            copy: copy
+      - name: Use output
+        run: |
+          echo ${{ steps.promote.outputs.artifact-id }}
+          echo ${{ steps.copy.outputs.artifact-id }}
+        uses: docker://golang:1.20.3-alpine3.17
