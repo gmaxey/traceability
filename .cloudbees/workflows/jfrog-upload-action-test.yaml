@@ -1,0 +1,22 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: jfrog-upload action test
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Upload file from JFrog Artifactory
+        uses: cloudbees-io/jfrog-artifactory-upload-file@v1
+        with:
+          artifactory-path: "test-image.tar"
+          file-path: "/local-path"
+          url: https://example.com
+          username: username
+          password: password
+          artifact-name: my-artifact
+          artifact-version: 1.0.0
+          send-artifact-info: true
+      - name: Use output
+        run: echo ${{ steps.helm.outputs.artifact-id }}
+        uses: docker://golang:1.20.3-alpine3.17
