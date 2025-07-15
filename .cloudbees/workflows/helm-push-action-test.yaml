@@ -1,0 +1,17 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: helm-push action test
+on:
+  workflow_dispatch:
+jobs:
+  build:
+    steps:
+      - name: Push Helm chart
+        id: helm
+        uses: cloudbees-io/helm-push@v1
+        with:
+          chart: ./charts/example
+          remote: oci://registry.example.com/example
+      - name: Use output
+        run: echo ${{ steps.helm.outputs.artifact-id }}
+        uses: docker://golang:1.20.3-alpine3.17
