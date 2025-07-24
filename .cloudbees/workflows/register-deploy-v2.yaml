@@ -12,5 +12,5 @@ jobs:
       - name: register deploy
         with:
           artifact_id: ${{ inputs.artifact-id }}
-          target-environment: QA
+          target-environment: gpm-qa
         uses: cloudbees-io/register-deployed-artifact@v2
