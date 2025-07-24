@@ -6,6 +6,7 @@ on:
     inputs:
       artifact-id:
         type: string
+        default: f48e880a-9f32-4c1c-8067-96f09c77ca26
 jobs:
   deploy:
     steps:
