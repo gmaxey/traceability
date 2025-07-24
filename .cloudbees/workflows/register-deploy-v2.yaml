@@ -1,0 +1,16 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: register-deploy-v2
+on:
+  workflow_dispatch:
+    inputs:
+      artifact-id:
+        type: string
+jobs:
+  deploy:
+    steps:
+      - name: register deploy
+        with:
+          artifact_id: ${{ inputs.artifact-id }}
+          target-environment: QA
+        uses: cloudbees-io/register-deployed-artifact@v2
