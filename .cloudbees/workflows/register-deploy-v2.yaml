@@ -9,10 +9,10 @@ on:
         default: f48e880a-9f32-4c1c-8067-96f09c77ca26
 jobs:
   deploy:
+    environment: gpm-qa
     steps:
       - name: register deploy
         kind: deploy
         with:
           artifact-id: ${{ inputs.artifact-id }}
-          target-environment: gpm-qa
         uses: cloudbees-io/register-deployed-artifact@v2
