@@ -1,0 +1,18 @@
+apiVersion: automation.cloudbees.io/v1alpha1
+kind: workflow
+name: label-artifact-version
+on:
+  workflow_dispatch:
+    inputs:
+      artifact-id:
+        type: string
+        # pre-prod MyAppAPIs:2.1.5-0.0.119
+        default: 69cddd9f-830d-4913-a155-62ced90127c5
+jobs:
+  test:
+    steps:
+      - name: label artifact version
+        with:
+          artifact-id: ${{ inputs.artifact-id }}
+          labels: Action approval
+        uses: cloudbees-io/label-artifact-version@v1
