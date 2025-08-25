@@ -20,5 +20,9 @@ jobs:
           artifact-id: ${{ steps.publish.outputs.artifact-id }}
         uses: cloudbees-io/get-artifact-details@main
       - name: echo
-        run: echo ${{ steps.get.outputs.name }}
+        run: |
+          echo name: ${{ steps.get.outputs.name }}
+          echo version: ${{ steps.get.outputs.version }}
+          echo url: ${{ steps.get.outputs.url }}
+          echo digest: ${{ steps.get.outputs.digest }}
         uses: docker://golang:1.20.3-alpine3.17
