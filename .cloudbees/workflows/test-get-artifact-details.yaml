@@ -25,4 +25,5 @@ jobs:
           echo version: ${{ steps.get.outputs.version }}
           echo url: ${{ steps.get.outputs.url }}
           echo digest: ${{ steps.get.outputs.digest }}
+          
         uses: docker://golang:1.20.3-alpine3.17
